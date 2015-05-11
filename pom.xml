@@ -81,6 +81,8 @@
       </plugins>
     </pluginManagement>
   </build>
+
+	<!-- This repo configuration added to find product deps. -->	
 <repositories>
  <repository>
   <id>jboss-maven-repository</id>
