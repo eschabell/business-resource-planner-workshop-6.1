@@ -68,6 +68,14 @@ rule "requiredNetworkBandwidthTotal"
         scoreHolder.addHardConstraintMatch(kcontext, $networkBandwidth - $requiredNetworkBandwidthTotal.intValue());
 end
 
+rule "Computer 0 violates 1 hard constraint per process that requires more than 3GB"
+     when
+        $computer : CloudComputer($memory : memory, id == 0L)
+		CloudProcess(computer == $computer, $requiredMemory : requiredMemory > 3)
+    then
+        scoreHolder.addHardConstraintMatch(kcontext, -1);
+end
+
 // ############################################################################
 // Soft constraints
 // ############################################################################
